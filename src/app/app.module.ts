@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +14,6 @@ import { BtnEditarComponent } from './components/secure/btn-editar/btn-editar.co
 import { BtnEliminarComponent } from './components/secure/btn-eliminar/btn-eliminar.component';
 import { DashboardComponent } from './components/secure/dashboard/dashboard.component';
 import { PersonasComponent } from './components/secure/personas/personas.component';
-import { AutosComponent } from './components/secure/autos/autos.component';
 import { SecureComponent } from './components/secure/secure.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PublicModule } from './components/public/public.module';
@@ -30,7 +31,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     BtnEliminarComponent,
     DashboardComponent,
     PersonasComponent,
-    AutosComponent,
     SecureComponent,
     NotFoundComponent,
     ModalComponent,
@@ -43,7 +43,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     PublicModule,
+<<<<<<< HEAD
     MatDialogModule,
+=======
+    BrowserAnimationsModule
+>>>>>>> 3b5ad84cdfa688f2c793431d64cbee79b3dc3b2d
   ],
   providers: [],
   bootstrap: [AppComponent]
