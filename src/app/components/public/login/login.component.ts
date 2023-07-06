@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Login, Token } from 'src/app/interface/login';
+import { Login} from 'src/app/interface/login';
 import { ApiService as loginService } from 'src/app/services/login/login.service';
 import { Router } from '@angular/router';
 import { environment } from 'env';
@@ -21,10 +20,10 @@ export class LoginComponent {
     console.log("enviar datos");
     this.loginService.login(this.login).subscribe(
       (response: any) => {
+        this.error = null;
         const token = response.access_token;
         localStorage.setItem('token', token);
         window.location.href = environment.webUrl + '/dashboard';
-        this.error = null;
       },
       error => {
         if (error && error.error && error.error.status === 'error') {

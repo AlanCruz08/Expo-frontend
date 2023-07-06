@@ -7,5 +7,7 @@ export interface Token {
     token_type: string;
 }
 export interface Register {
-
+    name: string;
+    email: string;
+    password: string;
 }

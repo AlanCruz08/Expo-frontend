@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Login } from 'src/app/interface/login';
+import { Login, Register } from 'src/app/interface/login';
 import { environment } from 'env';
 
 @Injectable({
@@ -18,6 +18,10 @@ export class ApiService {
 
   login(credentials: Login) {
     return this.http.post(`${this.apiUrl}/login`, credentials);
+  }
+
+  register(credentials: Register) {
+    return this.http.post(`${this.apiUrl}/register`, credentials);
   }
 
   setAuthToken(token: string) {
