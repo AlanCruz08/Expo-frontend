@@ -16,6 +16,7 @@ export class RegisterComponent {
   constructor(private registerService: registerService, private router: Router) { }
 
   EnvioDatos() {
+    this.error = '';
     console.log("enviar datos");
     this.registerService.register(this.register).subscribe(
       (response: any) => {
@@ -25,7 +26,6 @@ export class RegisterComponent {
         window.location.href = environment.webUrl + '/dashboard';
       },
       error => {
-        this.error = '';
         if (error && error.error && error.error.status === 'error') {
           this.error = error.error.message;
         } else {

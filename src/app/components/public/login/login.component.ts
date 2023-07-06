@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(private loginService: loginService, private router: Router) { }
 
   EnvioDatos() {
+    this.error = '';
     this.loginService.login(this.login).subscribe(
       (response: any) => {
         this.error = null;
