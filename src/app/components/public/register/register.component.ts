@@ -28,30 +28,46 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class RegisterComponent {
   register: Register = { name: '', email: '', password: '' };
-  error!: string|null;
+  error!: string | null;
 
-  constructor(private registerService: registerService, private router: Router) { }
+  constructor(private registerService: registerService, private router: Router) {
+    this.error = null;
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Redirigir al usuario a la página principal
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   EnvioDatos() {
-    this.error = '';
-    console.log("enviar datos");
-    this.registerService.register(this.register).subscribe(
-      (response: any) => {
-        this.error = null;
-        const token = response.access_token;
-        localStorage.setItem('token', token);
-        this.router.navigate(['/dashboard']);
-      },
-      error => {
-        if (error && error.error && error.error.status === 'error') {
-          this.error = error.error.message;
-        } else {
-          this.error = 'Error desconocido';
+    if (this.register.email && this.register.password && this.register.name) {
+      console.log("enviar datos");
+      this.registerService.register(this.register).subscribe(
+        (response: any) => {
+          this.error = null;
+          const token = response.access_token;
+          localStorage.setItem('token', token);
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          if (error && error.error && error.error.status === 'error') {
+            this.error = error.error.message;
+          } else {
+            this.error = 'Error desconocido';
+          }
+          setTimeout(() => {
+            this.error = null; // Restablecer el valor a null para regresar al estado default
+          }, 2000);
         }
-        setTimeout(() => {
-          this.error = null; // Restablecer el valor a null para regresar al estado default
-        }, 2000);
-      }
-    );
+      );
+    } else {
+      this.error = 'Por favor, verifica los campos.';
+      setTimeout(() => {
+        this.error = null; // Restablecer el valor a null para regresar al estado default
+      }, 2000);
+    }
   }
 }

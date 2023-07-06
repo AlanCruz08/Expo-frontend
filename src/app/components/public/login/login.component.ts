@@ -28,9 +28,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class LoginComponent {
   login: Login = { email: '', password: '' };
-  error!: string | null;
+  error: string | null;
 
-  constructor(private loginService: loginService, private router: Router) { }
+  constructor(private loginService: loginService, private router: Router) {
+    this.error = null;
+  }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -41,25 +43,30 @@ export class LoginComponent {
   }
 
   EnvioDatos() {
-    this.error = '';
-    this.loginService.login(this.login).subscribe(
-      (response: any) => {
-        this.error = null;
-        const token = response.access_token;
-        localStorage.setItem('token', token);
-        this.router.navigate(['/dashboard']);
-      },
-      error => {
-        if (error && error.error && error.error.status === "error") {
-          this.error = error.error.message;
-        } else {
-          this.error = 'Error desconocido';
+    if (this.login.email && this.login.password) {
+      this.loginService.login(this.login).subscribe(
+        (response: any) => {
+          this.error = null;
+          const token = response.access_token;
+          localStorage.setItem('token', token);
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          if (error && error.error && error.error.status === "error") {
+            this.error = error.error.message;
+          } else {
+            this.error = 'Error desconocido';
+          }
+          setTimeout(() => {
+            this.error = null; // Restablecer el valor a null para regresar al estado default
+          }, 2000);
         }
-        setTimeout(() => {
-          this.error = null; // Restablecer el valor a null para regresar al estado default
-        }, 2000);
-      }
-    );
+      );
+    } else {
+      this.error = 'Por favor, verifica los campos.';
+      setTimeout(() => {
+        this.error = null; // Restablecer el valor a null para regresar al estado default
+      }, 2000);
+    }
   }
-
 }
