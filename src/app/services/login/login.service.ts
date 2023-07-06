@@ -11,7 +11,7 @@ import { Observable, throwError, catchError } from 'rxjs';
 export class ApiService {
   headers: HttpHeaders;
 
-  private apiUrl = environment.apiUrl;
+  private apiUrlSP = environment.apiUrlSP;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ "Accept": "application/json", "Ahutorization": "Bearer " });
@@ -23,7 +23,7 @@ export class ApiService {
     if (token) {
       const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
 
-      return this.http.post(`${this.apiUrl}/logout`, credentials, { headers: headers }).pipe(
+      return this.http.post(`${this.apiUrlSP}/logout`, credentials, { headers: headers }).pipe(
         catchError((error) => {
           // Manejar el error aquí según tus necesidades
           return throwError(error);
@@ -37,11 +37,11 @@ export class ApiService {
   }
 
   login(credentials: Login) {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+    return this.http.post(`${this.apiUrlSP}/login`, credentials);
   }
 
   register(credentials: Register) {
-    return this.http.post(`${this.apiUrl}/register`, credentials);
+    return this.http.post(`${this.apiUrlSP}/register`, credentials);
   }
 
 
