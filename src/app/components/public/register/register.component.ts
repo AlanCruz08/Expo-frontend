@@ -23,7 +23,7 @@ export class RegisterComponent {
         this.error = null;
         const token = response.access_token;
         localStorage.setItem('token', token);
-        window.location.href = environment.webUrl + '/dashboard';
+        this.router.navigate(['/dashboard']);
       },
       error => {
         if (error && error.error && error.error.status === 'error') {

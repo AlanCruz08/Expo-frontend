@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService as logoutService } from 'src/app/services/login/login.service';
 import { Token } from 'src/app/interface/login';
 import { environment } from 'env';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,7 @@ export class NavComponent {
   token = localStorage.getItem('token');
   error!: string | null;
 
-  constructor(private logoutService: logoutService) { }
+  constructor(private logoutService: logoutService, private router: Router) { }
 
   cerrarSesion() {
     if (this.token !== null) {
@@ -21,17 +22,16 @@ export class NavComponent {
         (response: any) => {
           console.log(response);
           localStorage.removeItem('token');
-          window.location.href = environment.webUrl;
+          this.router.navigate(['/']);
         },
         error => {
-          localStorage.removeItem('token');
           console.log(this.error = error.error.message);
-          window.location.href = environment.errorUrl;
+          this.router.navigate(['/']);
         }
       );
     } else {
       console.log('como puedes hacer eso!')
-      window.location.href = environment.webUrl;
+      this.router.navigate(['/']);
     }
   }
 }

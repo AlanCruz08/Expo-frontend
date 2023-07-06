@@ -16,6 +16,14 @@ export class LoginComponent {
   error!: string|null;
 
   constructor(private loginService: loginService, private router: Router) { }
+  
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Redirigir al usuario a la página principal
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   EnvioDatos() {
     this.error = '';
@@ -24,7 +32,7 @@ export class LoginComponent {
         this.error = null;
         const token = response.access_token;
         localStorage.setItem('token', token);
-        window.location.href = environment.webUrl + '/dashboard';
+        this.router.navigate(['/dashboard']);
       },
       error => {
         if (error && error.error && error.error.status === "error") {
