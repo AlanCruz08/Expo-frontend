@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +12,5 @@ export class RegisterComponent {
   password!: string;
   confirmPassword!: string;
 
-  constructor(private apiService: ApiService) { }
-
-  login() {
-    const credentials = {
-      email: this.email,
-      password: this.password
-    };
-
-    this.apiService.login(credentials).subscribe(
-      
-    );
-  }
+  constructor(private httpClient: HttpClient) { }
 }

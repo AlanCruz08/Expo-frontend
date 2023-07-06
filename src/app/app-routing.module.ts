@@ -9,13 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PublicComponent } from './components/public/public.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PublicComponent,
-    children: [
-      { path: 'login', component: LoginComponent }
-    ]
-  },
+  
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
