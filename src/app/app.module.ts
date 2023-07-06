@@ -16,6 +16,9 @@ import { AutosComponent } from './components/secure/autos/autos.component';
 import { SecureComponent } from './components/secure/secure.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PublicModule } from './components/public/public.module';
+import { ModalComponent } from './components/modal/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { PublicModule } from './components/public/public.module';
     AutosComponent,
     SecureComponent,
     NotFoundComponent,
+    ModalComponent,
+   
+    
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,7 @@ import { PublicModule } from './components/public/public.module';
     HttpClientModule,
     FormsModule,
     PublicModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

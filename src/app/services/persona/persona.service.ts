@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona } from 'src/app/interface/persona';
 import { environment } from 'env';
@@ -10,43 +10,41 @@ import { environment } from 'env';
 
 export class PersonaService {
 
-  headers:HttpHeaders;
-
   private apiUrl = environment.apiUrl;
-  private _token: string | null = null;
 
-  constructor(private http : HttpClient) { this.headers = new HttpHeaders({"Accept": "application/json", "Authorization":"Bearer "}); }
+  constructor(private http: HttpClient) {}
 
   getPersonas(): Observable<Persona[]> {
-    return this.http.get<Persona[]>(`${this.apiUrl}/index`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    return this.http.get<Persona[]>(`${this.apiUrl}/`, { headers });
   }
 
   getPersona(id: number): Observable<Persona> {
-    const url = `${this.apiUrl}/show/${id}`;
-    return this.http.get<Persona>(url);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Persona>(url, { headers });
   }
 
   createPersona(persona: Persona): Observable<Persona> {
-    const url = `${this.apiUrl}/create`;
-    return this.http.post<Persona>(url, persona);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    const url = `${this.apiUrl}/`;
+    return this.http.post<Persona>(url, persona, { headers });
   }
 
- 
   updatePersona(id: number, persona: Persona): Observable<Persona> {
-    const url = `${this.apiUrl}/update/${id}`;
-    return this.http.put<Persona>(url, persona);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Persona>(url, persona, { headers });
   }
-  
 
   deletePersona(id: number): Observable<void> {
-    const url = `${this.apiUrl}/delete/${id}`;
-    return this.http.delete<void>(url);
-  }
-
-  public getToken() {
-    if (!this._token) {
-      this._token = localStorage.getItem('token');
-    }
-    return this._token;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url, { headers });
   }
 }

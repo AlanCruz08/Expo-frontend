@@ -1,0 +1,71 @@
+.containerPersona {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .containerPersona__sub {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .containerPersona__sub--title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .containerPersona__sub--title h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .containerPersona__sub--title button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .containerPersona__sub--table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .containerPersona__sub--table th,
+  .containerPersona__sub--table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .containerPersona__sub--table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .containerPersona__sub--table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .containerPersona__sub--table tbody tr:hover {
+    background-color: #ebebeb;
+  }
+  
+  .containerPersona__sub--table button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
