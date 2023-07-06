@@ -22,8 +22,8 @@
                         <td>{{ persona.apellido_p }}</td>
                         <td>{{ persona.apellido_m }}</td>
                         <td>
-                            <button (click)="openEditModal(persona)">Edit</button>
-                            <button (click)="deletePersona(persona)">Delete</button>
+                            <button class="edit" (click)="openEditModal(persona)">Edit</button>
+                            <button class="delete" (click)="deletePersona(persona)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

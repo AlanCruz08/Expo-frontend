@@ -1,39 +1,49 @@
 /* Estilos para el modal */
 h2.mat-dialog-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+  padding: 20px;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.form__container {
+  margin-bottom: 16px;
+}
+
+.form__container--label {
+  font-weight: bold;
+}
+
+.form__container--input {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.container__button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container__button--button {
+  margin-left: 8px;
+}
+
+.hola {
+  background-color: #dddddd;
   
-  .mat-dialog-content {
-    padding: 20px;
-  }
+  position: relative;
+  z-index: 1000;
+  justify-content: center;
   
-  .form {
-    margin-bottom: 20px;
-  }
+
   
-  .form__container {
-    margin-bottom: 16px;
-  }
-  
-  .form__container--label {
-    font-weight: bold;
-  }
-  
-  .form__container--input {
-    width: 100%;
-  }
-  
-  .mat-dialog-actions {
-    justify-content: flex-end;
-  }
-  
-  .container__button {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .container__button--button {
-    margin-left: 8px;
-  }
-  
+}

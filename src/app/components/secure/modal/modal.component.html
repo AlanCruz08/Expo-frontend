@@ -2,29 +2,31 @@
 
 <!-- componente del modal -->
 <!-- Titulo -->
-<h2 mat-dialog-title>{{ data.action === 'create' ? 'Crear' : 'Editar' }}</h2>
-<mat-dialog-content>
-  <!-- formulario -->
-  <form class="form" #personaForm="ngForm">
-    <!-- contenido -->
-    <div class="form__container">
-      <label class="form__container--label" for="">Nombre</label>
-      <input class="form__container--input" matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+<div class="hola">
+  <h2 mat-dialog-title>{{ data.action === 'create' ? 'Crear' : 'Editar' }}</h2>
+  <mat-dialog-content>
+    <!-- formulario -->
+    <form class="form" #personaForm="ngForm">
+      <!-- contenido -->
+      <div class="form__container">
+        <label class="form__container--label" for="">Nombre</label>
+        <input  class="form__container--input" matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+      </div>
+      <div class="form__container">
+        <label class="form__container--label" for="">Apellido Paterno </label>
+        <input class="form__container--input" matInput placeholder="apellido" [(ngModel)]="data.apellido_p" name="apellido_p" required>
+      </div>
+      <div class="form__container">
+        <label class="form__container--label" for="">Apellido Materno</label>
+        <input type="email" class="form__container--input" matInput placeholder="Email" [(ngModel)]="data.apellido_m" name="apellido_m" required>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <!-- botones -->
+    <div class="container__button">
+      <button class="container__button--button" mat-button [mat-dialog-close]="false">Cancelar</button>
+      <button class="container__button--button" mat-button [mat-dialog-close]="personaForm.valid && data">Guardar</button>
     </div>
-    <div class="form__container">
-      <label class="form__container--label" for="">Apellido Paterno </label>
-      <input class="form__container--input" matInput placeholder="apellido" [(ngModel)]="data.apellido_p" name="apellido_p" required>
-    </div>
-    <div class="form__container">
-      <label class="form__container--label" for="">Apellido Materno</label>
-      <input class="form__container--input" matInput placeholder="Email" [(ngModel)]="data.apellido_m" name="apellido_m" required>
-    </div>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <!-- botones -->
-  <div class="container__button">
-    <button class="container__button--button" mat-button [mat-dialog-close]="false">Cancelar</button>
-    <button class="container__button--button" mat-button [mat-dialog-close]="personaForm.valid && data">Guardar</button>
-  </div>
-</mat-dialog-actions>
+  </mat-dialog-actions>
+</div>
