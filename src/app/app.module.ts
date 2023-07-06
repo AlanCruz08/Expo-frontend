@@ -43,11 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     PublicModule,
-<<<<<<< HEAD
     MatDialogModule,
-=======
-    BrowserAnimationsModule
->>>>>>> 3b5ad84cdfa688f2c793431d64cbee79b3dc3b2d
   ],
   providers: [],
   bootstrap: [AppComponent]
