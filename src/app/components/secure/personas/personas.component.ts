@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 //importamos el matdiaglog
 import { MatDialog } from '@angular/material/dialog';
 //importamos el modal
-import { ModalComponent } from '../../modal/modal/modal.component';
+import { ModalComponent } from '../modal/modal.component';
 //importamos el router
 import { Router } from '@angular/router';
 //importamos la interface
