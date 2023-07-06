@@ -26,8 +26,7 @@ export class LoginComponent {
         window.location.href = environment.webUrl + '/dashboard';
       },
       error => {
-        this.error = '';
-        if (error && error.error && error.error.status === 'error') {
+        if (error && error.error && error.error.status === "error") {
           this.error = error.error.message;
         } else {
           this.error = 'Error desconocido';
