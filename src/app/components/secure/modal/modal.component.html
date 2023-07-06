@@ -1,5 +1,3 @@
-
-
 <!-- componente del modal -->
 <!-- Titulo -->
 <div class="hola">
@@ -9,16 +7,25 @@
     <form class="form" #personaForm="ngForm">
       <!-- contenido -->
       <div class="form__container">
-        <label class="form__container--label" for="">Nombre</label>
-        <input  class="form__container--input" matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+        <label class="form__container--label" for="nombre">Nombre</label>
+        <input type="text" class="form__container--input" matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+        <div *ngIf="personaForm.controls['nombre'].invalid && (personaForm.controls['nombre'].dirty || personaForm.controls['nombre'].touched)" class="error-message">
+          <p class="text-center text-danger" *ngIf="personaForm.controls['nombre'].errors?.['required']">El nombre es requerido.</p>
+        </div>
       </div>
       <div class="form__container">
-        <label class="form__container--label" for="">Apellido Paterno </label>
-        <input class="form__container--input" matInput placeholder="apellido" [(ngModel)]="data.apellido_p" name="apellido_p" required>
+        <label class="form__container--label" for="apellido_p">Apellido Paterno</label>
+        <input type="text" class="form__container--input" matInput placeholder="Apellido Paterno" [(ngModel)]="data.apellido_p" name="apellido_p" required>
+        <div *ngIf="personaForm.controls['apellido_p'].invalid && (personaForm.controls['apellido_p'].dirty || personaForm.controls['apellido_p'].touched)" class="error-message">
+          <p class="text-center text-danger" *ngIf="personaForm.controls['apellido_p'].errors?.['required']">El apellido paterno es requerido.</p>
+        </div>
       </div>
       <div class="form__container">
-        <label class="form__container--label" for="">Apellido Materno</label>
-        <input type="email" class="form__container--input" matInput placeholder="Email" [(ngModel)]="data.apellido_m" name="apellido_m" required>
+        <label class="form__container--label" for="apellido_m">Apellido Materno</label>
+        <input type="text" class="form__container--input" matInput placeholder="Apellido Materno" [(ngModel)]="data.apellido_m" name="apellido_m" required>
+        <div *ngIf="personaForm.controls['apellido_m'].invalid && (personaForm.controls['apellido_m'].dirty || personaForm.controls['apellido_m'].touched)" class="error-message">
+          <p class="text-center text-danger" *ngIf="personaForm.controls['apellido_m'].errors?.['required']">El apellido materno es requerido.</p>
+        </div>
       </div>
     </form>
   </mat-dialog-content>
