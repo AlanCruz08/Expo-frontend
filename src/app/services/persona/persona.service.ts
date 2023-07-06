@@ -13,6 +13,7 @@ export class PersonaService {
   headers:HttpHeaders;
 
   private apiUrl = environment.apiUrl;
+  private _token: string | null = null;
 
   constructor(private http : HttpClient) { this.headers = new HttpHeaders({"Accept": "application/json", "Authorization":"Bearer "}); }
 
@@ -40,5 +41,12 @@ export class PersonaService {
   deletePersona(id: number): Observable<void> {
     const url = `${this.apiUrl}/delete/${id}`;
     return this.http.delete<void>(url);
+  }
+
+  public getToken() {
+    if (!this._token) {
+      this._token = localStorage.getItem('token');
+    }
+    return this._token;
   }
 }

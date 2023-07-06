@@ -4,36 +4,16 @@ import { LoginComponent } from './components/public/login/login.component';
 import { RegisterComponent } from './components/public/register/register.component';
 import { DashboardComponent } from './components/secure/dashboard/dashboard.component';
 import { PersonasComponent } from './components/secure/personas/personas.component';
-import { AutosComponent } from './components/secure/autos/autos.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PublicComponent } from './components/public/public.component';
+import { tokenGuard } from './guards/token.guard';
 
 const routes: Routes = [
-  
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-
-  { path: 'dashboard', component: DashboardComponent },
-
-  {
-    path: 'personas',
-    component: PersonasComponent,
-    // children: [
-    //   { path: 'crear' },
-    //   { path: 'editar' },
-    //   { path: 'eliminar' }
-    // ]
-  },
-  {
-    path: 'autos',
-    component: AutosComponent,
-    // children: [
-    //   { path: 'crear' },
-    //   { path: 'editar' },
-    //   { path: 'eliminar' }
-    // ]
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [tokenGuard]},
+  { path: 'personas', component: PersonasComponent, canActivate: [tokenGuard] },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

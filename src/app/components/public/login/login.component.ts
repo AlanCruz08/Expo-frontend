@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'env';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +18,6 @@ export class LoginComponent {
   constructor(private loginService: loginService, private router: Router) { }
 
   EnvioDatos() {
-    console.log("enviar datos");
     this.loginService.login(this.login).subscribe(
       (response: any) => {
         this.error = null;
@@ -26,6 +26,7 @@ export class LoginComponent {
         window.location.href = environment.webUrl + '/dashboard';
       },
       error => {
+        this.error = '';
         if (error && error.error && error.error.status === 'error') {
           this.error = error.error.message;
         } else {

@@ -25,6 +25,7 @@ export class RegisterComponent {
         window.location.href = environment.webUrl + '/dashboard';
       },
       error => {
+        this.error = '';
         if (error && error.error && error.error.status === 'error') {
           this.error = error.error.message;
         } else {

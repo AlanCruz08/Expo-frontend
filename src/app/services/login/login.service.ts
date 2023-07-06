@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Login, Register } from 'src/app/interface/login';
+import { Login, Register, Logout } from 'src/app/interface/login';
 import { environment } from 'env';
+import { Observable, throwError, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,26 @@ export class ApiService {
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({ "Content-Type": "application/json" });
+    this.headers = new HttpHeaders({ "Accept": "application/json", "Ahutorization": "Bearer " });
+  }
+
+  logout(credentials: Logout): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+
+      return this.http.post(`${this.apiUrl}/logout`, credentials, { headers: headers }).pipe(
+        catchError((error) => {
+          // Manejar el error aquí según tus necesidades
+          return throwError(error);
+        })
+      );
+    } else {
+      window.location.href = environment.webUrl + '/';
+      console.log('Token not found');
+      return throwError('Token not found');
+    }
   }
 
   login(credentials: Login) {
@@ -23,6 +43,9 @@ export class ApiService {
   register(credentials: Register) {
     return this.http.post(`${this.apiUrl}/register`, credentials);
   }
+
+
+
 
   setAuthToken(token: string) {
     localStorage.setItem('authToken', token);
